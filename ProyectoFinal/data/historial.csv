@@ -9,3 +9,5 @@ REGISTRAR       | ID:  22   | Nombre:   12                                  | De
 EJECUCION       | ID:  3    | Nombre:   Dormir                              | Descripcion:  Tomar medicamentos para dormir                | Estado: EN_EJECUCION | 
 EJECUTADO       | ID:  3    | Nombre:   Dormir                              | Descripcion:  Tomar medicamentos para dormir                | Estado: EJECUTADO    | 
 DESHECHO        | ID:  3    | Nombre:   Dormir                              | Descripcion:  Tomar medicamentos para dormir                | Estado: PENDIENTE    | 
+ELIMINADO       | ID:  12   | Nombre:   Planificar vacaciones               | Descripcion:  Itinerario para viaje                         | Estado: ELIMINADO    | 
+DESHECHO        | ID:  12   | Nombre:   Planificar vacaciones               | Descripcion:  Itinerario para viaje                         | Estado: PENDIENTE    | 
