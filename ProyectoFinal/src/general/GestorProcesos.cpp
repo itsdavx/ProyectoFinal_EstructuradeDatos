@@ -21,22 +21,35 @@ void GestorProcesos::registrarProceso(const string& nombre, const string& descri
 }
 
 void GestorProcesos::ejecutarProceso() {
-    try {
-        Proceso proceso = colaPendientes.desencolarValido(); // ahora ignora eliminados
-        proceso.setEstado(EstadoProceso::EJECUTADO);
-
-        listaProcesos.actualizar(proceso);
-        mapaProcesos.actualizar(proceso.getId(), proceso);
-        pilaDeshacer.apilar(proceso);
-
-        persistencia.actualizarProceso(proceso);
-        persistencia.registrarEnHistorial("EJECUTAR", proceso);
-
-        cout << "Proceso ejecutado: " << proceso.getNombre() << endl;
-    } catch (runtime_error& e) {
-        cout << e.what() << endl;
+    if (colaPendientes.estaVacia()) {
+        cout << "No hay procesos pendientes.\n";
+        return;
     }
+
+    // Saca el primer proceso pendiente válido
+    Proceso proceso = colaPendientes.desencolarValido();
+
+    // 1️⃣ Estado: EN_EJECUCION
+    proceso.setEstado(EstadoProceso::EN_EJECUCION);
+    listaProcesos.actualizar(proceso);
+    mapaProcesos.actualizar(proceso.getId(), proceso);
+
+    persistencia.actualizarProceso(proceso);
+    persistencia.registrarEnHistorial("EN_EJECUCION", proceso);
+
+    // 2️⃣ Estado: EJECUTADO
+    proceso.setEstado(EstadoProceso::EJECUTADO);
+    listaProcesos.actualizar(proceso);
+    mapaProcesos.actualizar(proceso.getId(), proceso);
+
+    pilaDeshacer.apilar(proceso);
+
+    persistencia.actualizarProceso(proceso);
+    persistencia.registrarEnHistorial("EJECUTAR", proceso);
+
+    cout << "Proceso ejecutado: " << proceso.getNombre() << endl;
 }
+
 
 
 void GestorProcesos::eliminarProceso(int id) {

@@ -1,0 +1,4 @@
+EN_EJECUCION 	| ID: 1 	| Nombre: Mecanica de Automovil 	| Descripcion: Cambio de Motor 	| Estado: EN_EJECUCION
+EJECUTAR 	| ID: 1 	| Nombre: Mecanica de Automovil 	| Descripcion: Cambio de Motor 	| Estado: EJECUTADO
+EN_EJECUCION 	| ID: 2 	| Nombre: Desarrollo Web 	| Descripcion: Creacion de red social 	| Estado: EN_EJECUCION
+EJECUTAR 	| ID: 2 	| Nombre: Desarrollo Web 	| Descripcion: Creacion de red social 	| Estado: EJECUTADO
