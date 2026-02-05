@@ -1,13 +1,18 @@
 #include "../../include/estructuras/PilaProcesos.h"
+
 #include <stdexcept>
 #include <iomanip>
 
+// Constructor y Destructor
 PilaProcesos::PilaProcesos() : cima(nullptr) {}
 PilaProcesos::~PilaProcesos() {
     while (!estaVacia()) desapilar();
 }
 
-bool PilaProcesos::estaVacia() const { return cima == nullptr; }
+// Implementacion de metodos
+bool PilaProcesos::estaVacia() const { 
+    return cima == nullptr; 
+}
 
 void PilaProcesos::apilar(const Proceso& proceso) {
     Nodo* nuevo = new Nodo(proceso);

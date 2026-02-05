@@ -9,25 +9,29 @@ using namespace std;
 
 class ColaProcesos {
 private:
+
     struct Nodo {
         Proceso proceso;
-        Nodo* siguiente;
+        Nodo *siguiente;
     };
 
-    Nodo* frente;
-    Nodo* final;
+    Nodo *frente;
+    Nodo *final;
 
 public:
+
+    // Constructor y Destructor
     ColaProcesos();
+    ~ColaProcesos();
+
+    // Métodos
     void limpiar();
     bool estaVacia() const;
-    void encolar(const Proceso& proceso);
-    void encolarAlFrente(const Proceso& proceso); // Para revertir
-    Proceso desencolarValido();                   // Ignora procesos eliminados
+    void encolar(const Proceso &proceso);
+    void encolarAlFrente(const Proceso &proceso); 
+    Proceso desencolarValido();
     void mostrar() const;
     void actualizarEstado(int id, EstadoProceso nuevoEstado);
-
-    ~ColaProcesos();
 };
 
 #endif

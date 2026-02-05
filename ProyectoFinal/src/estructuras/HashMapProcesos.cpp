@@ -1,6 +1,8 @@
 #include "../../include/estructuras/HashMapProcesos.h"
+
 #include <stdexcept>
 
+// Constructor y Destructor
 HashMapProcesos::HashMapProcesos() {
     for (int i = 0; i < TAM; i++) tabla[i] = nullptr;
 }
@@ -15,7 +17,10 @@ HashMapProcesos::~HashMapProcesos() {
     }
 }
 
-int HashMapProcesos::funcionHash(int clave) const { return clave % TAM; }
+// Implementacion de metodos
+int HashMapProcesos::funcionHash(int clave) const {
+    return clave % TAM; 
+}
 
 void HashMapProcesos::insertar(int clave, const Proceso& proceso) {
     int idx = funcionHash(clave);

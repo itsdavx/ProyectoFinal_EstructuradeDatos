@@ -2,6 +2,7 @@
 #define GESTOR_PROCESOS_H
 
 #include <string>
+
 #include "Proceso.h"
 #include "Persistencia.h"
 
@@ -14,6 +15,7 @@ using namespace std;
 
 class GestorProcesos {
 private:
+
     ColaProcesos colaPendientes;
     ListaProcesos listaProcesos;
     HashMapProcesos mapaProcesos;
@@ -23,23 +25,21 @@ private:
     int siguienteId;
 
 public:
+
+    // Constructor
     GestorProcesos();
 
-    // Operaciones principales
+    //Métodos principales
     void registrarProceso(const string& nombre, const string& descripcion);
     void ejecutarProceso();
     void eliminarProceso(int id);
-
-    // Consultas
     void mostrarProcesosPendientes() const;
     void mostrarHistorial() const;
     void mostrarFlujoEjecucion() const;
     void buscarProcesoPorId(int id) const;
-
-    // Deshacer
     void deshacerUltimaAccion();
 
-    //Aulixiares
+    //Metodo Aulixiar
     string estadoToString(EstadoProceso estado) const;
 };
 

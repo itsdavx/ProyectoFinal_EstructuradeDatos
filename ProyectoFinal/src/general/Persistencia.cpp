@@ -1,4 +1,5 @@
 #include "../../include/general/Persistencia.h"
+
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -8,6 +9,7 @@
 
 using namespace std;
 
+// Implementacion de metodos
 string Persistencia::estadoToString(EstadoProceso estado) const {
     switch (estado) {
         case EstadoProceso::PENDIENTE: return "PENDIENTE";
@@ -18,11 +20,9 @@ string Persistencia::estadoToString(EstadoProceso estado) const {
     }
 }
 
-void Persistencia::cargarProcesos(ListaProcesos& lista,
-                                  ColaProcesos& cola,
-                                  HashMapProcesos& mapa,
-                                  int& siguienteId) {
-    lista = ListaProcesos();  // limpiar
+void Persistencia::cargarProcesos(ListaProcesos& lista, ColaProcesos& cola, HashMapProcesos& mapa, int& siguienteId) {
+    
+    lista = ListaProcesos();
     cola = ColaProcesos();
     mapa = HashMapProcesos();
 

@@ -1,22 +1,21 @@
 #include "../../include/estructuras/ListaProcesos.h"
+
 #include <iomanip>
 
+// Constructor y Destructor
 ListaProcesos::ListaProcesos() : cabeza(nullptr) {}
-ListaProcesos::~ListaProcesos()
-{
-    while (cabeza != nullptr)
-    {
+ListaProcesos::~ListaProcesos() {
+    while (cabeza != nullptr) {
         Nodo *temp = cabeza;
         cabeza = cabeza->siguiente;
         delete temp;
     }
 }
 
-void ListaProcesos::agregar(const Proceso &proceso)
-{
+// Implementacion de metodos
+void ListaProcesos::agregar(const Proceso &proceso) {
     Nodo *nuevo = new Nodo(proceso);
-    if (!cabeza)
-    {
+    if (!cabeza) {
         cabeza = nuevo;
         return;
     }
@@ -26,13 +25,10 @@ void ListaProcesos::agregar(const Proceso &proceso)
     actual->siguiente = nuevo;
 }
 
-void ListaProcesos::actualizar(const Proceso &proceso)
-{
+void ListaProcesos::actualizar(const Proceso &proceso) {
     Nodo *actual = cabeza;
-    while (actual)
-    {
-        if (actual->proceso.getId() == proceso.getId())
-        {
+    while (actual) {
+        if (actual->proceso.getId() == proceso.getId()) {
             actual->proceso.setEstado(proceso.getEstado());
             return;
         }
@@ -40,22 +36,18 @@ void ListaProcesos::actualizar(const Proceso &proceso)
     }
 }
 
-void ListaProcesos::mostrar() const
-{
-    if (!cabeza)
-    {
+void ListaProcesos::mostrar() const {
+    if (!cabeza) {
         cout << "No hay procesos registrados.\n";
         return;
     }
 
     Nodo *actual = cabeza;
 
-    while (actual)
-    {
+    while (actual) {
 
         string estadoStr;
-        switch (actual->proceso.getEstado())
-        {
+        switch (actual->proceso.getEstado()) {
         case EstadoProceso::PENDIENTE:
             estadoStr = "PENDIENTE";
             break;
@@ -85,15 +77,12 @@ void ListaProcesos::mostrar() const
     }
 }
 
-void ListaProcesos::mostrarPorEstado(EstadoProceso estado) const
-{
+void ListaProcesos::mostrarPorEstado(EstadoProceso estado) const {
     Nodo *actual = cabeza;
     bool encontrado = false;
 
-    while (actual)
-    {
-        if (actual->proceso.getEstado() == estado)
-        {
+    while (actual) {
+        if (actual->proceso.getEstado() == estado) {
 
             cout << left
                  << setw(5) << "ID:"
@@ -109,20 +98,16 @@ void ListaProcesos::mostrarPorEstado(EstadoProceso estado) const
         actual = actual->siguiente;
     }
 
-    if (!encontrado)
-    {
+    if (!encontrado) {
         cout << "No hay procesos con ese estado.\n";
     }
 }
 
-void ListaProcesos::reconstruirColaPendientes(ColaProcesos& cola) const
-{
+void ListaProcesos::reconstruirColaPendientes(ColaProcesos& cola) const {
     Nodo* actual = cabeza;
 
-    while (actual != nullptr)
-    {
-        if (actual->proceso.getEstado() == EstadoProceso::PENDIENTE)
-        {
+    while (actual != nullptr) {
+        if (actual->proceso.getEstado() == EstadoProceso::PENDIENTE) {
             cola.encolar(actual->proceso);
         }
         actual = actual->siguiente;

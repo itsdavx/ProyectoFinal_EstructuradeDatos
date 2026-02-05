@@ -3,15 +3,13 @@
 
 using namespace std;
 
-// Constructor de la clase GestorProcesos
-GestorProcesos::GestorProcesos() : siguienteId(1)
-{
+// Constructor
+GestorProcesos::GestorProcesos() : siguienteId(1) {
     persistencia.cargarProcesos(listaProcesos, colaPendientes, mapaProcesos, siguienteId);
 }
 
-// Funciones principales del gestor de procesos
-void GestorProcesos::registrarProceso(const string &nombre, const string &descripcion)
-{
+// Implementacion de metodos
+void GestorProcesos::registrarProceso(const string &nombre, const string &descripcion) {
     Proceso nuevo(siguienteId++, nombre, descripcion);
 
     colaPendientes.encolar(nuevo);
@@ -22,22 +20,18 @@ void GestorProcesos::registrarProceso(const string &nombre, const string &descri
     persistencia.registrarEnHistorial("REGISTRAR", nuevo);
 }
 
-void GestorProcesos::ejecutarProceso()
-{
-    if (colaPendientes.estaVacia())
-    {
+void GestorProcesos::ejecutarProceso() {
+    if (colaPendientes.estaVacia()) {
         cout << "No hay procesos pendientes.\n";
         return;
     }
 
-    // Saca el primer proceso pendiente válido
     Proceso proceso = colaPendientes.desencolarValido();
 
     // Estado: EN_EJECUCION
     proceso.setEstado(EstadoProceso::EN_EJECUCION);
     listaProcesos.actualizar(proceso);
     mapaProcesos.actualizar(proceso.getId(), proceso);
-
     persistencia.actualizarProceso(proceso);
     persistencia.registrarEnHistorial("EJECUCION", proceso);
 
@@ -45,11 +39,11 @@ void GestorProcesos::ejecutarProceso()
     proceso.setEstado(EstadoProceso::EJECUTADO);
     listaProcesos.actualizar(proceso);
     mapaProcesos.actualizar(proceso.getId(), proceso);
-
     pilaDeshacer.apilar(proceso);
-
     persistencia.actualizarProceso(proceso);
     persistencia.registrarEnHistorial("EJECUTADO", proceso);
+
+    //Mostrar en consolas
     cout << "\n---------------------- EJECUCION DE PROCESO ---------------------" << endl;
     cout << "Ejecutando proceso..." << endl;
     cout << "Proceso ejecutado: " << proceso.getNombre() << endl;
@@ -57,10 +51,8 @@ void GestorProcesos::ejecutarProceso()
     cout << "-----------------------------------------------------------------" << endl;
 }
 
-void GestorProcesos::eliminarProceso(int id)
-{
-    if (!mapaProcesos.existe(id))
-    {
+void GestorProcesos::eliminarProceso(int id) {
+    if (!mapaProcesos.existe(id)) {
         cout << "Proceso no encontrado.\n";
         return;
     }
@@ -68,20 +60,17 @@ void GestorProcesos::eliminarProceso(int id)
     Proceso proceso = mapaProcesos.obtener(id);
 
     // Validar Eliminado
-    if (proceso.getEstado() == EstadoProceso::ELIMINADO)
-    {
+    if (proceso.getEstado() == EstadoProceso::ELIMINADO) {
         cout << "El proceso ya esta eliminado.\n";
         return;
     }
 
     // Validar Ejecutado
-    if (proceso.getEstado() == EstadoProceso::EJECUTADO)
-    {
+    if (proceso.getEstado() == EstadoProceso::EJECUTADO) {
         cout << "No se puede eliminar un proceso que ya fue ejecutado.\n";
         return;
     }
 
-    // Solo llega aqui si esta PENDIENTE
     proceso.setEstado(EstadoProceso::ELIMINADO);
 
     listaProcesos.actualizar(proceso);
@@ -97,42 +86,42 @@ void GestorProcesos::eliminarProceso(int id)
     cout << "Eliminacion completada.\n";
 }
 
-
-
-void GestorProcesos::mostrarProcesosPendientes() const
-{
+void GestorProcesos::mostrarProcesosPendientes() const {
     colaPendientes.mostrar();
-
 }
 
-void GestorProcesos::mostrarHistorial() const
-{
+void GestorProcesos::mostrarHistorial() const {
     listaProcesos.mostrarPorEstado(EstadoProceso::EJECUTADO);
 }
 
-void GestorProcesos::mostrarFlujoEjecucion() const
-{
+void GestorProcesos::mostrarFlujoEjecucion() const {
     persistencia.mostrarHistorial();
 }
 
-void GestorProcesos::buscarProcesoPorId(int id) const
-{
-    if (!mapaProcesos.existe(id))
-    {
+void GestorProcesos::buscarProcesoPorId(int id) const {
+    if (!mapaProcesos.existe(id)) {
         cout << endl;
         cout << "Proceso no encontrado.\n";
         cout << "--------------------------------------------------------------------------------------------------" << endl;
         return;
     }
-    cout << "\n--------------------------------------------------------------------------------------------------" << endl;
+
     Proceso p = mapaProcesos.obtener(id);
+
+    // Validar Eliminado
+    if (p.getEstado() == EstadoProceso::ELIMINADO) {
+        cout << endl;
+        cout << "Proceso no encontrado.\n";
+        cout << "--------------------------------------------------------------------------------------------------" << endl;
+        return;
+    }
+
+    cout << "\n--------------------------------------------------------------------------------------------------" << endl;
     cout << "ID: " << p.getId() << " | Nombre: " << p.getNombre() << " | Descripcion: " << p.getDescripcion() << " | Estado: " << estadoToString(p.getEstado()) << endl;
     cout << "--------------------------------------------------------------------------------------------------" << endl;
 }
 
-
-void GestorProcesos::deshacerUltimaAccion()
-{
+void GestorProcesos::deshacerUltimaAccion() {
     if (pilaDeshacer.estaVacia())
     {
         cout << "No hay acciones para deshacer.\n";
@@ -141,19 +130,14 @@ void GestorProcesos::deshacerUltimaAccion()
 
     Proceso proceso = pilaDeshacer.desapilar();
 
-    // 🔴 Si el proceso estaba EJECUTADO o ELIMINADO, vuelve a PENDIENTE
-    if (proceso.getEstado() == EstadoProceso::EJECUTADO ||
-        proceso.getEstado() == EstadoProceso::ELIMINADO)
-    {
+    if (proceso.getEstado() == EstadoProceso::EJECUTADO || proceso.getEstado() == EstadoProceso::ELIMINADO) {
         proceso.setEstado(EstadoProceso::PENDIENTE);
     }
 
-    // Actualizar estructuras base
     listaProcesos.actualizar(proceso);
     mapaProcesos.actualizar(proceso.getId(), proceso);
 
-    // 🔥 CLAVE: reconstruir cola completa para respetar orden original
-    colaPendientes = ColaProcesos(); // limpia la cola
+    colaPendientes = ColaProcesos();
     listaProcesos.reconstruirColaPendientes(colaPendientes);
 
     persistencia.actualizarProceso(proceso);
@@ -163,7 +147,7 @@ void GestorProcesos::deshacerUltimaAccion()
     cout << "Ultima accion deshecha correctamente." << endl;
 }
 
-
+//Metodo Auxiliar
 string GestorProcesos::estadoToString(EstadoProceso estado) const {
     switch (estado) {
         case EstadoProceso::PENDIENTE: return "PENDIENTE";

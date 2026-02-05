@@ -5,8 +5,10 @@
 
 class Menu {
 private:
+
     GestorProcesos& gestor;
 
+    //Opciones del menú
     void mostrarOpciones() const;
     void registrarProceso();
     void ejecutarProceso();
@@ -18,7 +20,11 @@ private:
     void deshacerAccion();
 
 public:
+
+    // Constructor
     Menu(GestorProcesos& gestor);
+
+    // Método para iniciar el menu
     void iniciar();
 };
 
