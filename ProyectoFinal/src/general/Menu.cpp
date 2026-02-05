@@ -1,5 +1,6 @@
 #include "../include/general/Menu.h"
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -8,7 +9,7 @@ Menu::Menu(GestorProcesos &gestor) : gestor(gestor) {}
 void Menu::mostrarOpciones() const
 {
     cout << endl;
-    cout << "\n--------------------- GESTOR DE PROCESOS ---------------------\n";
+    cout << "\n------------------------ GESTOR DE PROCESOS ---------------------\n";
     cout << "1. Registrar proceso\n";
     cout << "2. Ejecutar siguiente proceso\n";
     cout << "3. Mostrar procesos pendientes\n";
@@ -23,46 +24,70 @@ void Menu::mostrarOpciones() const
 
 void Menu::iniciar()
 {
-    int opcion;
+    int opcion = -1; // valor seguro inicial
+
     do
     {
         mostrarOpciones();
-        cin >> opcion;
-        cout << endl;
+
+        if (!(cin >> opcion))
+        {
+            cin.clear(); // limpia error
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "\nEntrada invalida. Ingrese un numero valido.\n";
+            cout << "-----------------------------------------------------------------" << endl;
+
+            opcion = -1; // 🔒 evita salida del bucle
+            continue;
+        }
         switch (opcion)
         {
         case 1:
+        cout << "-----------------------------------------------------------------" << endl;
             registrarProceso();
             break;
         case 2:
+        cout << "-----------------------------------------------------------------" << endl;
             ejecutarProceso();
             break;
         case 3:
+        cout << "-----------------------------------------------------------------" << endl;
             mostrarPendientes();
             break;
         case 4:
+        cout << "-----------------------------------------------------------------" << endl;
             buscarProceso();
             break;
         case 5:
+        cout << "-----------------------------------------------------------------" << endl;
             eliminarProceso();
             break;
         case 6:
+        cout << "-----------------------------------------------------------------" << endl;
             mostrarHistorial();
             break;
         case 7:
+        cout << "-----------------------------------------------------------------" << endl;
             mostrarFlujo();
             break;
         case 8:
+        cout << "-----------------------------------------------------------------" << endl;
             deshacerAccion();
             break;
         case 0:
             cout << "Saliendo del sistema...\n";
+            cout << "-----------------------------------------------------------------" << endl;
             break;
         default:
-            cout << "Opcion invalida.\n";
+            cout << "\nEntrada invalida. Ingrese un numero valido.\n";
+            cout << "-----------------------------------------------------------------" << endl;
         }
+
     } while (opcion != 0);
 }
+
+
 
 void Menu::registrarProceso()
 {
@@ -76,7 +101,7 @@ void Menu::registrarProceso()
     gestor.registrarProceso(nombre, descripcion);
     cout << "Registrando proceso..." << endl;
     cout << "Proceso registrado exitosamente." << endl;
-    cout << "---------------------------------------------------------------" << endl;
+    cout << "-----------------------------------------------------------------" << endl;
 }
 
 // Funciones implementadas por el gestor de procesos
@@ -88,14 +113,14 @@ void Menu::ejecutarProceso()
 
 void Menu::mostrarPendientes()
 {
-    cout << "\n--------------------- PROCESOS PENDIENTES ---------------------" << endl;
+    cout << "\n------------------------------------------------------------ PROCESOS PENDIENTES -------------------------------------------------------------" << endl;
     gestor.mostrarProcesosPendientes();
-    cout << "---------------------------------------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
 
 void Menu::buscarProceso()
 {
-    cout << "---------------------- BUSQUEDA DE PROCESO POR ID ---------------------" << endl;
+    cout << "\n----------------------------------- BUSQUEDA DE PROCESO POR ID -----------------------------------" << endl;
     int id;
     cout << "Ingrese ID: ";
     cin >> id;
@@ -105,31 +130,32 @@ void Menu::buscarProceso()
 
 void Menu::eliminarProceso()
 {
-    cout << "---------------------- ELIMINACION DE PROCESO POR ID ---------------------" << endl;
+    cout << "\n----------------- ELIMINACION DE PROCESO POR ID -----------------" << endl;
     int id;
     cout << "Ingrese ID: ";
     cin >> id;
-
-    gestor.eliminarProceso(id);
+    cout << endl;
+    gestor.eliminarProceso(id);  
+    cout << "-----------------------------------------------------------------" << endl;
 }
 
 void Menu::mostrarHistorial()
 {
-    cout << "\n--------------------- HISTORIAL DE EJECUCION ---------------------" << endl;
+    cout << "\n------------------------------------------------ HISTORIAL DE EJECUCION ------------------------------------------------" << endl;
     gestor.mostrarHistorial();
-    cout << "-------------------------------------------------------------------" << endl;
+    cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
 }
 
 void Menu::mostrarFlujo()
 {
-    cout << "\n--------------------- FLUJO DE EJECUCION PASO A PASO ---------------------" << endl;
+    cout << "\n------------------------------------------------------------- FLUJO DE EJECUCION PASO A PASO --------------------------------------------------------------------" << endl;
     gestor.mostrarFlujoEjecucion();
-    cout << "--------------------------------------------------------------------------" << endl;
+    cout << "-----------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
 
 void Menu::deshacerAccion()
 {
-    cout << "\n--------------------- DESHACER ULTIMA ACCION ---------------------" << endl;
+    cout << "\n-------------------- DESHACER ULTIMA ACCION ---------------------" << endl;
     gestor.deshacerUltimaAccion();
-    cout << "------------------------------------------------------------------" << endl;
+    cout << "-----------------------------------------------------------------" << endl;
 }

@@ -39,7 +39,7 @@ void GestorProcesos::ejecutarProceso()
     mapaProcesos.actualizar(proceso.getId(), proceso);
 
     persistencia.actualizarProceso(proceso);
-    persistencia.registrarEnHistorial("EN_EJECUCION", proceso);
+    persistencia.registrarEnHistorial("EJECUCION", proceso);
 
     // Estado: EJECUTADO
     proceso.setEstado(EstadoProceso::EJECUTADO);
@@ -49,12 +49,12 @@ void GestorProcesos::ejecutarProceso()
     pilaDeshacer.apilar(proceso);
 
     persistencia.actualizarProceso(proceso);
-    persistencia.registrarEnHistorial("EJECUTAR", proceso);
-    cout << "\n----------------- EJECUCION DE PROCESO -----------------" << endl;
+    persistencia.registrarEnHistorial("EJECUTADO", proceso);
+    cout << "\n---------------------- EJECUCION DE PROCESO ---------------------" << endl;
     cout << "Ejecutando proceso..." << endl;
     cout << "Proceso ejecutado: " << proceso.getNombre() << endl;
     cout << "Ejecucion completada." << endl;
-    cout << "--------------------------------------------------------" << endl;
+    cout << "-----------------------------------------------------------------" << endl;
 }
 
 void GestorProcesos::eliminarProceso(int id)
@@ -74,12 +74,10 @@ void GestorProcesos::eliminarProceso(int id)
     pilaDeshacer.apilar(proceso);
 
     persistencia.actualizarProceso(proceso);
-    persistencia.registrarEnHistorial("ELIMINAR", proceso);
-    cout << "\n------------------ ELIMINACION DE PROCESO ------------------" << endl;
+    persistencia.registrarEnHistorial("ELIMINADO", proceso);
     cout << "Eliminando proceso..." << endl;
     cout << "Proceso eliminado: " << proceso.getNombre() << endl;
     cout << "Eliminacion completada." << endl;
-    cout << "------------------------------------------------------------" << endl;
 }
 
 void GestorProcesos::mostrarProcesosPendientes() const
@@ -102,19 +100,17 @@ void GestorProcesos::buscarProcesoPorId(int id) const
 {
     if (!mapaProcesos.existe(id))
     {
+        cout << endl;
         cout << "Proceso no encontrado.\n";
+        cout << "--------------------------------------------------------------------------------------------------" << endl;
         return;
     }
-
-    cout << "\n----------------------------------------------------------------" << endl;
+    cout << "\n--------------------------------------------------------------------------------------------------" << endl;
     Proceso p = mapaProcesos.obtener(id);
-    cout << "ID: " << p.getId()
-         << " | Nombre: " << p.getNombre()
-         << " | Descripcion: " << p.getDescripcion()
-         << " | Estado: " << static_cast<int>(p.getEstado())
-         << endl;
-    cout << "----------------------------------------------------------------" << endl;
+    cout << "ID: " << p.getId() << " | Nombre: " << p.getNombre() << " | Descripcion: " << p.getDescripcion() << " | Estado: " << estadoToString(p.getEstado()) << endl;
+    cout << "--------------------------------------------------------------------------------------------------" << endl;
 }
+
 
 void GestorProcesos::deshacerUltimaAccion()
 {
@@ -132,7 +128,17 @@ void GestorProcesos::deshacerUltimaAccion()
     mapaProcesos.actualizar(proceso.getId(), proceso);
 
     persistencia.actualizarProceso(proceso);
-    persistencia.registrarEnHistorial("DESHACER", proceso);
+    persistencia.registrarEnHistorial("DESHECHO", proceso);
     cout << "Deshaciendo ultima accion..." << endl;
     cout << "Ultima accion deshecha correctamente."<< endl;
+}
+
+string GestorProcesos::estadoToString(EstadoProceso estado) const {
+    switch (estado) {
+        case EstadoProceso::PENDIENTE: return "PENDIENTE";
+        case EstadoProceso::EN_EJECUCION: return "EN_EJECUCION";
+        case EstadoProceso::EJECUTADO: return "EJECUTADO";
+        case EstadoProceso::ELIMINADO: return "ELIMINADO";
+        default: return "DESCONOCIDO";
+    }
 }

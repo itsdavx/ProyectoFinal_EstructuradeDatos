@@ -125,7 +125,7 @@ void Persistencia::registrarEnHistorial(const string& accion, const Proceso& p) 
             << setw(14) << "Descripcion:"
             << setw(45) << p.getDescripcion() << " | "
             << setw(8)  << "Estado:"
-            << setw(12) << estadoToString(p.getEstado())
+            << setw(12) << estadoToString(p.getEstado()) << " | "
             << '\n';
 }
 

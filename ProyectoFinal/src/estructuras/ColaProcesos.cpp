@@ -110,11 +110,11 @@ void ColaProcesos::mostrar() const
                  << setw(5) << "ID:"
                  << setw(4) << actual->proceso.getId() << " | "
                  << setw(10) << "Nombre:"
-                 << setw(35) << actual->proceso.getNombre() << " | " // ↑ antes 25
+                 << setw(35) << actual->proceso.getNombre() << " | " 
                  << setw(14) << "Descripcion:"
-                 << setw(45) << actual->proceso.getDescripcion() << " | " // ↑ antes 30
+                 << setw(45) << actual->proceso.getDescripcion() << " | " 
                  << setw(8) << "Estado:"
-                 << setw(12) << estadoStr
+                 << setw(12) << estadoStr << "|"
                  << endl;
         }
         actual = actual->siguiente;

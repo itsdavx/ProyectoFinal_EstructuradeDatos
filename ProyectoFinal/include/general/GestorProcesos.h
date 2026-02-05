@@ -38,6 +38,9 @@ public:
 
     // Deshacer
     void deshacerUltimaAccion();
+
+    //Aulixiares
+    string estadoToString(EstadoProceso estado) const;
 };
 
 #endif

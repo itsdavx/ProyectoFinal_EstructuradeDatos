@@ -101,7 +101,7 @@ void ListaProcesos::mostrarPorEstado(EstadoProceso estado) const
                  << setw(10) << "Nombre:"
                  << setw(35) << actual->proceso.getNombre() << " | "
                  << setw(14) << "Descripcion:"
-                 << setw(45) << actual->proceso.getDescripcion()
+                 << setw(45) << actual->proceso.getDescripcion() << " | "
                  << endl;
 
             encontrado = true;

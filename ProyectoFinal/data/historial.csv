@@ -1,0 +1,11 @@
+EJECUCION       | ID:  1    | Nombre:   Mecanica de Automovil               | Descripcion:  Cambio de Motor                               | Estado: EN_EJECUCION | 
+EJECUTADO       | ID:  1    | Nombre:   Mecanica de Automovil               | Descripcion:  Cambio de Motor                               | Estado: EJECUTADO    | 
+REGISTRAR       | ID:  21   | Nombre:   2                                   | Descripcion:  sad                                           | Estado: PENDIENTE    | 
+EJECUCION       | ID:  2    | Nombre:   Desarrollo Web                      | Descripcion:  Creacion de red social                        | Estado: EN_EJECUCION | 
+EJECUTADO       | ID:  2    | Nombre:   Desarrollo Web                      | Descripcion:  Creacion de red social                        | Estado: EJECUTADO    | 
+ELIMINADO       | ID:  3    | Nombre:   Dormir                              | Descripcion:  Tomar medicamentos para dormir                | Estado: ELIMINADO    | 
+DESHECHO        | ID:  3    | Nombre:   Dormir                              | Descripcion:  Tomar medicamentos para dormir                | Estado: PENDIENTE    | 
+REGISTRAR       | ID:  22   | Nombre:   12                                  | Descripcion:  21                                            | Estado: PENDIENTE    | 
+EJECUCION       | ID:  3    | Nombre:   Dormir                              | Descripcion:  Tomar medicamentos para dormir                | Estado: EN_EJECUCION | 
+EJECUTADO       | ID:  3    | Nombre:   Dormir                              | Descripcion:  Tomar medicamentos para dormir                | Estado: EJECUTADO    | 
+DESHECHO        | ID:  3    | Nombre:   Dormir                              | Descripcion:  Tomar medicamentos para dormir                | Estado: PENDIENTE    | 

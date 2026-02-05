@@ -1,13 +1,13 @@
 1,Mecanica de Automovil,Cambio de Motor,EJECUTADO
 2,Desarrollo Web,Creacion de red social,EJECUTADO
-3,Dormir,Tomar medicamentos para dormir,EJECUTADO
-4,Estudiar Estructuras de Datos,Repasar colas y pilas,EJECUTADO
-5,Comprar comestibles,Ir al supermercado a comprar,EJECUTADO
-6,Limpiar la casa,Lavar y ordenar,EJECUTADO
-7,Preparar presentacion,Diapositivas para la reunion,EJECUTADO
-8,Ir al gimnasio,Entrenamiento de fuerza,EJECUTADO
-9,Leer libro,Terminar novela de ciencia ficcion,EJECUTADO
-10,Cocinar cena,Receta nueva de pasta,EJECUTADO
+3,Dormir,Tomar medicamentos para dormir,PENDIENTE
+4,Estudiar Estructuras de Datos,Repasar colas y pilas,PENDIENTE
+5,Comprar comestibles,Ir al supermercado a comprar,PENDIENTE
+6,Limpiar la casa,Lavar y ordenar,PENDIENTE
+7,Preparar presentacion,Diapositivas para la reunion,PENDIENTE
+8,Ir al gimnasio,Entrenamiento de fuerza,PENDIENTE
+9,Leer libro,Terminar novela de ciencia ficcion,PENDIENTE
+10,Cocinar cena,Receta nueva de pasta,PENDIENTE
 11,Reparar bicicleta,Ajuste de frenos y cadena,PENDIENTE
 12,Planificar vacaciones,Itinerario para viaje,PENDIENTE
 13,Asistir a reunion,Reunion de trabajo importante,PENDIENTE
@@ -18,3 +18,5 @@
 18,Ir al medico,Cita anual de chequeo,PENDIENTE
 19,Comprar regalo,Cumpleanos de amigo,PENDIENTE
 20,Ver pelicula,Nueva pelicula en el cine,PENDIENTE
+21,2,sad,PENDIENTE
+22,12,21,PENDIENTE

@@ -8,6 +8,5 @@ if %errorlevel% neq 0 (
     exit /b %errorlevel%
 )
 echo Compilacion exitosa.
-echo Ejecutando programa...
 build\ProyectoFinal.exe
 pause
