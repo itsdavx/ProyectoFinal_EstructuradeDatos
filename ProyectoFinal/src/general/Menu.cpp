@@ -24,21 +24,22 @@ void Menu::mostrarOpciones() const
 
 void Menu::iniciar()
 {
-    int opcion = -1; // valor seguro inicial
+    int opcion = -1;
 
     do
     {
         mostrarOpciones();
 
+        //Validacion de entrada
         if (!(cin >> opcion))
         {
-            cin.clear(); // limpia error
+            cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
             cout << "\nEntrada invalida. Ingrese un numero valido.\n";
             cout << "-----------------------------------------------------------------" << endl;
 
-            opcion = -1; // 🔒 evita salida del bucle
+            opcion = -1;
             continue;
         }
         switch (opcion)
