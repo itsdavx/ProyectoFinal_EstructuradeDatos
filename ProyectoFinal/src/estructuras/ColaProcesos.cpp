@@ -133,3 +133,14 @@ void ColaProcesos::actualizarEstado(int id, EstadoProceso nuevoEstado)
         actual = actual->siguiente;
     }
 }
+
+void ColaProcesos::limpiar()
+{
+    while (frente != nullptr)
+    {
+        Nodo* temp = frente;
+        frente = frente->siguiente;
+        delete temp;
+    }
+    final = nullptr;
+}

@@ -77,7 +77,7 @@ void Menu::iniciar()
             deshacerAccion();
             break;
         case 0:
-            cout << "Saliendo del sistema...\n";
+            cout << "\nSaliendo del sistema...\n";
             cout << "-----------------------------------------------------------------" << endl;
             break;
         default:

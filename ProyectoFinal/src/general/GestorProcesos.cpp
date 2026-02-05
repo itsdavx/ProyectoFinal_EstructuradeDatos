@@ -140,17 +140,29 @@ void GestorProcesos::deshacerUltimaAccion()
     }
 
     Proceso proceso = pilaDeshacer.desapilar();
-    proceso.setEstado(EstadoProceso::PENDIENTE);
 
-    colaPendientes.encolarAlFrente(proceso);
+    // 🔴 Si el proceso estaba EJECUTADO o ELIMINADO, vuelve a PENDIENTE
+    if (proceso.getEstado() == EstadoProceso::EJECUTADO ||
+        proceso.getEstado() == EstadoProceso::ELIMINADO)
+    {
+        proceso.setEstado(EstadoProceso::PENDIENTE);
+    }
+
+    // Actualizar estructuras base
     listaProcesos.actualizar(proceso);
     mapaProcesos.actualizar(proceso.getId(), proceso);
 
+    // 🔥 CLAVE: reconstruir cola completa para respetar orden original
+    colaPendientes = ColaProcesos(); // limpia la cola
+    listaProcesos.reconstruirColaPendientes(colaPendientes);
+
     persistencia.actualizarProceso(proceso);
     persistencia.registrarEnHistorial("DESHECHO", proceso);
+
     cout << "Deshaciendo ultima accion..." << endl;
-    cout << "Ultima accion deshecha correctamente."<< endl;
+    cout << "Ultima accion deshecha correctamente." << endl;
 }
+
 
 string GestorProcesos::estadoToString(EstadoProceso estado) const {
     switch (estado) {

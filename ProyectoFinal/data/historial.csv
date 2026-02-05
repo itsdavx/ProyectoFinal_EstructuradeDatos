@@ -11,3 +11,31 @@ EJECUTADO       | ID:  3    | Nombre:   Dormir                              | De
 DESHECHO        | ID:  3    | Nombre:   Dormir                              | Descripcion:  Tomar medicamentos para dormir                | Estado: PENDIENTE    | 
 ELIMINADO       | ID:  12   | Nombre:   Planificar vacaciones               | Descripcion:  Itinerario para viaje                         | Estado: ELIMINADO    | 
 DESHECHO        | ID:  12   | Nombre:   Planificar vacaciones               | Descripcion:  Itinerario para viaje                         | Estado: PENDIENTE    | 
+EJECUCION       | ID:  3    | Nombre:   Dormir                              | Descripcion:  Tomar medicamentos para dormir                | Estado: EN_EJECUCION | 
+EJECUTADO       | ID:  3    | Nombre:   Dormir                              | Descripcion:  Tomar medicamentos para dormir                | Estado: EJECUTADO    | 
+EJECUCION       | ID:  4    | Nombre:   Estudiar Estructuras de Datos       | Descripcion:  Repasar colas y pilas                         | Estado: EN_EJECUCION | 
+EJECUTADO       | ID:  4    | Nombre:   Estudiar Estructuras de Datos       | Descripcion:  Repasar colas y pilas                         | Estado: EJECUTADO    | 
+ELIMINADO       | ID:  5    | Nombre:   Comprar comestibles                 | Descripcion:  Ir al supermercado a comprar                  | Estado: ELIMINADO    | 
+EJECUCION       | ID:  6    | Nombre:   Limpiar la casa                     | Descripcion:  Lavar y ordenar                               | Estado: EN_EJECUCION | 
+EJECUTADO       | ID:  6    | Nombre:   Limpiar la casa                     | Descripcion:  Lavar y ordenar                               | Estado: EJECUTADO    | 
+DESHECHO        | ID:  5    | Nombre:   Comprar comestibles                 | Descripcion:  Ir al supermercado a comprar                  | Estado: PENDIENTE    | 
+ELIMINADO       | ID:  12   | Nombre:   Planificar vacaciones               | Descripcion:  Itinerario para viaje                         | Estado: ELIMINADO    | 
+DESHECHO        | ID:  12   | Nombre:   Planificar vacaciones               | Descripcion:  Itinerario para viaje                         | Estado: PENDIENTE    | 
+REGISTRAR       | ID:  23   | Nombre:   1                                   | Descripcion:  1                                             | Estado: PENDIENTE    | 
+EJECUCION       | ID:  5    | Nombre:   Comprar comestibles                 | Descripcion:  Ir al supermercado a comprar                  | Estado: EN_EJECUCION | 
+EJECUTADO       | ID:  5    | Nombre:   Comprar comestibles                 | Descripcion:  Ir al supermercado a comprar                  | Estado: EJECUTADO    | 
+ELIMINADO       | ID:  17   | Nombre:   Organizar escritorio                | Descripcion:  Limpieza y orden                              | Estado: ELIMINADO    | 
+DESHECHO        | ID:  17   | Nombre:   Organizar escritorio                | Descripcion:  Limpieza y orden                              | Estado: PENDIENTE    | 
+ELIMINADO       | ID:  7    | Nombre:   Preparar presentacion               | Descripcion:  Diapositivas para la reunion                  | Estado: ELIMINADO    | 
+DESHECHO        | ID:  7    | Nombre:   Preparar presentacion               | Descripcion:  Diapositivas para la reunion                  | Estado: PENDIENTE    | 
+ELIMINADO       | ID:  10   | Nombre:   Cocinar cena                        | Descripcion:  Receta nueva de pasta                         | Estado: ELIMINADO    | 
+DESHECHO        | ID:  10   | Nombre:   Cocinar cena                        | Descripcion:  Receta nueva de pasta                         | Estado: PENDIENTE    | 
+ELIMINADO       | ID:  8    | Nombre:   Ir al gimnasio                      | Descripcion:  Entrenamiento de fuerza                       | Estado: ELIMINADO    | 
+EJECUCION       | ID:  7    | Nombre:   Preparar presentacion               | Descripcion:  Diapositivas para la reunion                  | Estado: EN_EJECUCION | 
+EJECUTADO       | ID:  7    | Nombre:   Preparar presentacion               | Descripcion:  Diapositivas para la reunion                  | Estado: EJECUTADO    | 
+EJECUCION       | ID:  9    | Nombre:   Leer libro                          | Descripcion:  Terminar novela de ciencia ficcion            | Estado: EN_EJECUCION | 
+EJECUTADO       | ID:  9    | Nombre:   Leer libro                          | Descripcion:  Terminar novela de ciencia ficcion            | Estado: EJECUTADO    | 
+DESHECHO        | ID:  9    | Nombre:   Leer libro                          | Descripcion:  Terminar novela de ciencia ficcion            | Estado: PENDIENTE    | 
+DESHECHO        | ID:  7    | Nombre:   Preparar presentacion               | Descripcion:  Diapositivas para la reunion                  | Estado: PENDIENTE    | 
+DESHECHO        | ID:  8    | Nombre:   Ir al gimnasio                      | Descripcion:  Entrenamiento de fuerza                       | Estado: PENDIENTE    | 
+DESHECHO        | ID:  5    | Nombre:   Comprar comestibles                 | Descripcion:  Ir al supermercado a comprar                  | Estado: PENDIENTE    | 

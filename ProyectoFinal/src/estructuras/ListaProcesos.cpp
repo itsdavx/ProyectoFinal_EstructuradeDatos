@@ -114,3 +114,17 @@ void ListaProcesos::mostrarPorEstado(EstadoProceso estado) const
         cout << "No hay procesos con ese estado.\n";
     }
 }
+
+void ListaProcesos::reconstruirColaPendientes(ColaProcesos& cola) const
+{
+    Nodo* actual = cabeza;
+
+    while (actual != nullptr)
+    {
+        if (actual->proceso.getEstado() == EstadoProceso::PENDIENTE)
+        {
+            cola.encolar(actual->proceso);
+        }
+        actual = actual->siguiente;
+    }
+}

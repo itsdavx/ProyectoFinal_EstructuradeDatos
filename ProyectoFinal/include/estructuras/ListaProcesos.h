@@ -2,17 +2,21 @@
 #define LISTA_PROCESOS_H
 
 #include "../general/Proceso.h"
+#include "ColaProcesos.h"   // 🔥 FALTA ESTO
 #include <iostream>
 
 using namespace std;
 
-class ListaProcesos {
+class ListaProcesos
+{
 private:
-    struct Nodo {
+    struct Nodo
+    {
         Proceso proceso;
         Nodo* siguiente;
         Nodo(const Proceso& p) : proceso(p), siguiente(nullptr) {}
     };
+
     Nodo* cabeza;
 
 public:
@@ -23,6 +27,9 @@ public:
     void actualizar(const Proceso& proceso);
     void mostrar() const;
     void mostrarPorEstado(EstadoProceso estado) const;
+
+    // 🔥 FALTA ESTO
+    void reconstruirColaPendientes(ColaProcesos& cola) const;
 };
 
 #endif

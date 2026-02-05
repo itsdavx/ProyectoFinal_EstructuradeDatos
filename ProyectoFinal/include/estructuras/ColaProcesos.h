@@ -19,7 +19,7 @@ private:
 
 public:
     ColaProcesos();
-
+    void limpiar();
     bool estaVacia() const;
     void encolar(const Proceso& proceso);
     void encolarAlFrente(const Proceso& proceso); // Para revertir
