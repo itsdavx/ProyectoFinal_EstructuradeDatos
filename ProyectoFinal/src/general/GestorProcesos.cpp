@@ -66,19 +66,29 @@ void GestorProcesos::eliminarProceso(int id)
     }
 
     Proceso proceso = mapaProcesos.obtener(id);
+
+    // Validacion Eliminado
+    if (proceso.getEstado() == EstadoProceso::ELIMINADO)
+    {
+        cout << "El proceso ya esta eliminado. No se puede eliminar nuevamente.\n";
+        return;
+    }
+
     proceso.setEstado(EstadoProceso::ELIMINADO);
 
     listaProcesos.actualizar(proceso);
-    mapaProcesos.actualizar(id, proceso);                          // ya no eliminar del mapa
-    colaPendientes.actualizarEstado(id, EstadoProceso::ELIMINADO); // sincroniza cola
+    mapaProcesos.actualizar(id, proceso);                          
+    colaPendientes.actualizarEstado(id, EstadoProceso::ELIMINADO); 
     pilaDeshacer.apilar(proceso);
 
     persistencia.actualizarProceso(proceso);
     persistencia.registrarEnHistorial("ELIMINADO", proceso);
+
     cout << "Eliminando proceso..." << endl;
     cout << "Proceso eliminado: " << proceso.getNombre() << endl;
     cout << "Eliminacion completada." << endl;
 }
+
 
 void GestorProcesos::mostrarProcesosPendientes() const
 {
