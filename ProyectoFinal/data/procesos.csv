@@ -1,9 +1,9 @@
-1,Mecanica de Automovil,Cambio de Motor,EJECUTADO
-2,Desarrollo Web,Creacion de red social,EJECUTADO
-3,Dormir,Tomar medicamentos para dormir,EJECUTADO
-4,Estudiar Estructuras de Datos,Repasar colas y pilas,EJECUTADO
+1,Mecanica de Automovil,Cambio de Motor,PENDIENTE
+2,Desarrollo Web,Creacion de red social,PENDIENTE
+3,Dormir,Tomar medicamentos para dormir,PENDIENTE
+4,Estudiar Estructuras de Datos,Repasar colas y pilas, PENDIENTE
 5,Comprar comestibles,Ir al supermercado a comprar,PENDIENTE
-6,Limpiar la casa,Lavar y ordenar,EJECUTADO
+6,Limpiar la casa,Lavar y ordenar,PENDIENTE
 7,Preparar presentacion,Diapositivas para la reunion,PENDIENTE
 8,Ir al gimnasio,Entrenamiento de fuerza,PENDIENTE
 9,Leer libro,Terminar novela de ciencia ficcion,PENDIENTE
@@ -18,6 +18,13 @@
 18,Ir al medico,Cita anual de chequeo,PENDIENTE
 19,Comprar regalo,Cumpleanos de amigo,PENDIENTE
 20,Ver pelicula,Nueva pelicula en el cine,PENDIENTE
-21,2,sad,PENDIENTE
-22,12,21,PENDIENTE
-23,1,1,PENDIENTE
+21,Tomar curso en linea,Curso de programacion avanzada,PENDIENTE
+22,Escribir blog,Articulo sobre tecnologia,PENDIENTE
+23,Practicar instrumento,Lecciones de guitarra,PENDIENTE
+24,Asistir a taller,Taller de fotografia,PENDIENTE
+25,Actualizar software,Instalar nuevas versiones,PENDIENTE
+26,Realizar ejercicio,Cardio y estiramientos,PENDIENTE
+27,Visitar museo,Exposicion de arte moderno,PENDIENTE
+28,Participar en voluntariado,Ayuda en comedor social,PENDIENTE
+29,Comprar ropa,Nueva temporada de moda,PENDIENTE
+30,Ir a la playa,Dia de relax y sol,PENDIENTE
