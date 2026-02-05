@@ -25,7 +25,7 @@ public:
     void encolarAlFrente(const Proceso& proceso); // Para revertir
     Proceso desencolarValido();                   // Ignora procesos eliminados
     void mostrar() const;
-void actualizarEstado(int id, EstadoProceso nuevoEstado); // sincroniza cola
+    void actualizarEstado(int id, EstadoProceso nuevoEstado);
 
     ~ColaProcesos();
 };

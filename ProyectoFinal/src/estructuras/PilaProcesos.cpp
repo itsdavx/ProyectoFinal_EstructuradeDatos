@@ -1,5 +1,6 @@
 #include "../../include/estructuras/PilaProcesos.h"
 #include <stdexcept>
+#include <iomanip>
 
 PilaProcesos::PilaProcesos() : cima(nullptr) {}
 PilaProcesos::~PilaProcesos() {
@@ -28,13 +29,30 @@ void PilaProcesos::mostrar() const {
         cout << "No hay acciones registradas.\n";
         return;
     }
+
     Nodo* actual = cima;
+
     while (actual) {
-        cout << "ID: " << actual->proceso.getId()
-             << " | Nombre: " << actual->proceso.getNombre()
-             << " | Descripcion: " << actual->proceso.getDescripcion()
-             << " | Estado: " << static_cast<int>(actual->proceso.getEstado())
+
+        string estadoStr;
+        switch (actual->proceso.getEstado()) {
+            case EstadoProceso::PENDIENTE:      estadoStr = "PENDIENTE"; break;
+            case EstadoProceso::EN_EJECUCION:   estadoStr = "EN_EJECUCION"; break;
+            case EstadoProceso::EJECUTADO:      estadoStr = "EJECUTADO"; break;
+            case EstadoProceso::ELIMINADO:      estadoStr = "ELIMINADO"; break;
+        }
+
+        cout << left
+             << setw(5)  << "ID:"
+             << setw(4)  << actual->proceso.getId() << " | "
+             << setw(10) << "Nombre:"
+             << setw(35) << actual->proceso.getNombre() << " | "
+             << setw(14) << "Descripcion:"
+             << setw(45) << actual->proceso.getDescripcion() << " | "
+             << setw(8)  << "Estado:"
+             << setw(12) << estadoStr
              << endl;
+
         actual = actual->siguiente;
     }
 }

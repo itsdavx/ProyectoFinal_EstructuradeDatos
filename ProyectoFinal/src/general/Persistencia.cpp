@@ -4,6 +4,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
@@ -113,10 +114,19 @@ void Persistencia::actualizarProceso(const Proceso& p) {
 
 void Persistencia::registrarEnHistorial(const string& accion, const Proceso& p) {
     ofstream archivo(rutaHistorial, ios::app);
-    archivo << accion << " \t| ID: " << p.getId() 
-            << " \t| Nombre: " << p.getNombre() 
-            << " \t| Descripcion: " << p.getDescripcion()
-            << " \t| Estado: " << estadoToString(p.getEstado()) << "\n";
+    if (!archivo) return;
+
+    archivo << left
+            << setw(15) << accion << " | "
+            << setw(5)  << "ID:"
+            << setw(4)  << p.getId() << " | "
+            << setw(10) << "Nombre:"
+            << setw(35) << p.getNombre() << " | "
+            << setw(14) << "Descripcion:"
+            << setw(45) << p.getDescripcion() << " | "
+            << setw(8)  << "Estado:"
+            << setw(12) << estadoToString(p.getEstado())
+            << '\n';
 }
 
 void Persistencia::mostrarHistorial() const {
@@ -128,8 +138,7 @@ void Persistencia::mostrarHistorial() const {
         return;
     }
 
-    cout << "\n--- FLUJO DE EJECUCION PASO A PASO ---\n";
     while (getline(archivo, linea)) {
-        cout << linea << "\n";
+        cout << linea << endl;
     }
 }

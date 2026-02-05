@@ -18,10 +18,7 @@ private:
 public:
     Persistencia() = default;
 
-    void cargarProcesos(ListaProcesos& lista,
-                        ColaProcesos& cola,
-                        HashMapProcesos& mapa,
-                        int& siguienteId);
+    void cargarProcesos(ListaProcesos& lista, ColaProcesos& cola, HashMapProcesos& mapa, int& siguienteId);
 
     void guardarProceso(const Proceso& p);
     void actualizarProceso(const Proceso& p);

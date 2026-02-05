@@ -1,49 +1,68 @@
 #include "../../include/estructuras/ColaProcesos.h"
+#include <iomanip>
 
-ColaProcesos::ColaProcesos() : frente(nullptr), final(nullptr) { }
+// Constructor o inicializador
+ColaProcesos::ColaProcesos() : frente(nullptr), final(nullptr) {}
 
-ColaProcesos::~ColaProcesos() {
-    while (frente != nullptr) {
-        Nodo* temp = frente;
+// Destructor
+ColaProcesos::~ColaProcesos()
+{
+    while (frente != nullptr)
+    {
+        Nodo *temp = frente;
         frente = frente->siguiente;
         delete temp;
     }
 }
 
-bool ColaProcesos::estaVacia() const {
+// Implementacion de funciones
+bool ColaProcesos::estaVacia() const
+{
     return frente == nullptr;
 }
 
-void ColaProcesos::encolar(const Proceso& proceso) {
-    Nodo* nuevo = new Nodo{ proceso, nullptr };
-    if (estaVacia()) {
+void ColaProcesos::encolar(const Proceso &proceso)
+{
+    Nodo *nuevo = new Nodo{proceso, nullptr};
+    if (estaVacia())
+    {
         frente = final = nuevo;
-    } else {
+    }
+    else
+    {
         final->siguiente = nuevo;
         final = nuevo;
     }
 }
 
 // Pone el proceso al frente de la cola (para revertidos)
-void ColaProcesos::encolarAlFrente(const Proceso& proceso) {
-    Nodo* nuevo = new Nodo{ proceso, frente };
+void ColaProcesos::encolarAlFrente(const Proceso &proceso)
+{
+    Nodo *nuevo = new Nodo{proceso, frente};
     frente = nuevo;
-    if (final == nullptr) final = nuevo;
+    if (final == nullptr)
+        final = nuevo;
 }
 
-// Desencola el primer proceso que no esté eliminado
-Proceso ColaProcesos::desencolarValido() {
-    if (estaVacia()) throw runtime_error("No hay procesos pendientes");
+Proceso ColaProcesos::desencolarValido()
+{
+    if (estaVacia())
+        throw runtime_error("No hay procesos pendientes");
 
-    Nodo* actual = frente;
-    Nodo* anterior = nullptr;
+    Nodo *actual = frente;
+    Nodo *anterior = nullptr;
 
-    while (actual != nullptr) {
-        if (actual->proceso.getEstado() == EstadoProceso::PENDIENTE) {
-            if (anterior == nullptr) frente = actual->siguiente;
-            else anterior->siguiente = actual->siguiente;
+    while (actual != nullptr)
+    {
+        if (actual->proceso.getEstado() == EstadoProceso::PENDIENTE)
+        {
+            if (anterior == nullptr)
+                frente = actual->siguiente;
+            else
+                anterior->siguiente = actual->siguiente;
 
-            if (actual == final) final = anterior;
+            if (actual == final)
+                final = anterior;
 
             Proceso p = actual->proceso;
             delete actual;
@@ -56,34 +75,58 @@ Proceso ColaProcesos::desencolarValido() {
     throw runtime_error("No hay procesos pendientes");
 }
 
-void ColaProcesos::mostrar() const {
-    if (estaVacia()) {
+void ColaProcesos::mostrar() const
+{
+    if (estaVacia())
+    {
         cout << "No hay procesos pendientes.\n";
         return;
     }
 
-    Nodo* actual = frente;
-    while (actual != nullptr) {
-        if (actual->proceso.getEstado() != EstadoProceso::ELIMINADO) {
-            cout << "ID: " << actual->proceso.getId()
-                 << " | Nombre: " << actual->proceso.getNombre()
-                 << " | Descripcion: " << actual->proceso.getDescripcion()
-                 << " | Estado: ";
-            switch (actual->proceso.getEstado()) {
-                case EstadoProceso::PENDIENTE: cout << "PENDIENTE"; break;
-                case EstadoProceso::EN_EJECUCION: cout << "EN_EJECUCION"; break;
-                case EstadoProceso::EJECUTADO: cout << "EJECUTADO"; break;
-                case EstadoProceso::ELIMINADO: cout << "ELIMINADO"; break;
+    Nodo *actual = frente;
+    while (actual != nullptr)
+    {
+        if (actual->proceso.getEstado() != EstadoProceso::ELIMINADO)
+        {
+
+            string estadoStr;
+            switch (actual->proceso.getEstado())
+            {
+            case EstadoProceso::PENDIENTE:
+                estadoStr = "PENDIENTE";
+                break;
+            case EstadoProceso::EN_EJECUCION:
+                estadoStr = "EN_EJECUCION";
+                break;
+            case EstadoProceso::EJECUTADO:
+                estadoStr = "EJECUTADO";
+                break;
+            case EstadoProceso::ELIMINADO:
+                estadoStr = "ELIMINADO";
+                break;
             }
-            cout << endl;
+
+            cout << left
+                 << setw(5) << "ID:"
+                 << setw(4) << actual->proceso.getId() << " | "
+                 << setw(10) << "Nombre:"
+                 << setw(35) << actual->proceso.getNombre() << " | " // ↑ antes 25
+                 << setw(14) << "Descripcion:"
+                 << setw(45) << actual->proceso.getDescripcion() << " | " // ↑ antes 30
+                 << setw(8) << "Estado:"
+                 << setw(12) << estadoStr
+                 << endl;
         }
         actual = actual->siguiente;
     }
 }
-void ColaProcesos::actualizarEstado(int id, EstadoProceso nuevoEstado) {
-    Nodo* actual = frente;
-    while (actual != nullptr) {
-        if (actual->proceso.getId() == id) {
+void ColaProcesos::actualizarEstado(int id, EstadoProceso nuevoEstado)
+{
+    Nodo *actual = frente;
+    while (actual != nullptr)
+    {
+        if (actual->proceso.getId() == id)
+        {
             actual->proceso.setEstado(nuevoEstado);
             return;
         }

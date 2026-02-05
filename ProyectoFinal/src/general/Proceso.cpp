@@ -1,6 +1,6 @@
 #include "../../include/general/Proceso.h"
 
-Proceso::Proceso(int id, const string& nombre, const string& descripcion)
+Proceso::Proceso(int id, const string &nombre, const string &descripcion)
     : id(id), nombre(nombre), descripcion(descripcion), estado(EstadoProceso::PENDIENTE) {}
 
 int Proceso::getId() const { return id; }

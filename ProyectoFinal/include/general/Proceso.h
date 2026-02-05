@@ -6,10 +6,10 @@
 using namespace std;
 
 enum class EstadoProceso {
-    PENDIENTE,
-    EN_EJECUCION,
-    EJECUTADO,
-    ELIMINADO
+    PENDIENTE,   //0
+    EN_EJECUCION,//1
+    EJECUTADO,   //2
+    ELIMINADO    //3
 };
 
 class Proceso {
