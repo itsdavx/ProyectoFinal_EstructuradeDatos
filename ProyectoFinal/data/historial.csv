@@ -1,4 +1,0 @@
-REGISTRAR       | ID:  31   | Nombre:   1                                   | Descripcion:  1                                             | Estado: PENDIENTE    | 
-EJECUCION       | ID:  1    | Nombre:   Mecanica de Automovil               | Descripcion:  Cambio de Motor                               | Estado: EN_EJECUCION | 
-EJECUTADO       | ID:  1    | Nombre:   Mecanica de Automovil               | Descripcion:  Cambio de Motor                               | Estado: EJECUTADO    | 
-DESHECHO        | ID:  1    | Nombre:   Mecanica de Automovil               | Descripcion:  Cambio de Motor                               | Estado: PENDIENTE    | 
