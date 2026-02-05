@@ -2,8 +2,10 @@
 #include <stdexcept>
 
 PilaProcesos::PilaProcesos() : cima(nullptr) {}
+
 PilaProcesos::~PilaProcesos() {
-    while (!estaVacia()) desapilar();
+    while (!estaVacia())
+        desapilar();
 }
 
 bool PilaProcesos::estaVacia() const {
@@ -17,24 +19,24 @@ void PilaProcesos::apilar(const Proceso& proceso) {
 }
 
 Proceso PilaProcesos::desapilar() {
-    if (estaVacia()) throw std::runtime_error("Pila vacía");
+    if (estaVacia())
+        throw runtime_error("La pila está vacía");
     Nodo* temp = cima;
-    Proceso proceso = temp->proceso;
+    Proceso p = temp->proceso;
     cima = cima->siguiente;
     delete temp;
-    return proceso;
+    return p;
 }
 
 void PilaProcesos::mostrar() const {
     if (estaVacia()) {
-        std::cout << "No hay acciones en la pila.\n";
+        cout << "No hay acciones en la pila.\n";
         return;
     }
     Nodo* actual = cima;
     while (actual) {
-        std::cout << "ID: " << actual->proceso.getId()
-                  << " | Nombre: " << actual->proceso.getNombre()
-                  << "\n";
+        cout << "ID: " << actual->proceso.getId()
+             << " | Nombre: " << actual->proceso.getNombre() << "\n";
         actual = actual->siguiente;
     }
 }

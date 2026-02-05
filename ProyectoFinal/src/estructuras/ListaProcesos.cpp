@@ -2,10 +2,9 @@
 
 ListaProcesos::ListaProcesos() : cabeza(nullptr) {}
 ListaProcesos::~ListaProcesos() {
-    Nodo* actual = cabeza;
-    while (actual) {
-        Nodo* temp = actual;
-        actual = actual->siguiente;
+    while (cabeza) {
+        Nodo* temp = cabeza;
+        cabeza = cabeza->siguiente;
         delete temp;
     }
 }
@@ -17,7 +16,8 @@ void ListaProcesos::agregar(const Proceso& proceso) {
         return;
     }
     Nodo* actual = cabeza;
-    while (actual->siguiente) actual = actual->siguiente;
+    while (actual->siguiente)
+        actual = actual->siguiente;
     actual->siguiente = nuevo;
 }
 
@@ -33,19 +33,15 @@ void ListaProcesos::actualizar(const Proceso& proceso) {
 }
 
 void ListaProcesos::mostrar() const {
-    if (!cabeza) { std::cout << "No hay procesos registrados.\n"; return; }
+    if (!cabeza) {
+        cout << "No hay procesos registrados.\n";
+        return;
+    }
     Nodo* actual = cabeza;
     while (actual) {
-        std::cout << "ID: " << actual->proceso.getId()
-                  << " | Nombre: " << actual->proceso.getNombre()
-                  << " | Estado: ";
-        switch (actual->proceso.getEstado()) {
-            case EstadoProceso::PENDIENTE: std::cout << "PENDIENTE"; break;
-            case EstadoProceso::EJECUTADO: std::cout << "EJECUTADO"; break;
-            case EstadoProceso::ELIMINADO: std::cout << "ELIMINADO"; break;
-            case EstadoProceso::EN_EJECUCION: std::cout << "EN_EJECUCION"; break;
-        }
-        std::cout << "\n";
+        cout << "ID: " << actual->proceso.getId()
+             << " | Nombre: " << actual->proceso.getNombre()
+             << " | Estado: " << static_cast<int>(actual->proceso.getEstado()) << "\n";
         actual = actual->siguiente;
     }
 }
@@ -55,12 +51,11 @@ void ListaProcesos::mostrarPorEstado(EstadoProceso estado) const {
     bool encontrado = false;
     while (actual) {
         if (actual->proceso.getEstado() == estado) {
-            std::cout << "ID: " << actual->proceso.getId()
-                      << " | Nombre: " << actual->proceso.getNombre()
-                      << "\n";
+            cout << "ID: " << actual->proceso.getId()
+                 << " | Nombre: " << actual->proceso.getNombre() << "\n";
             encontrado = true;
         }
         actual = actual->siguiente;
     }
-    if (!encontrado) std::cout << "No hay procesos con ese estado.\n";
+    if (!encontrado) cout << "No hay procesos con ese estado.\n";
 }

@@ -1,7 +1,9 @@
 #include "../../include/estructuras/HashMapProcesos.h"
+#include <stdexcept>
 
 HashMapProcesos::HashMapProcesos() {
-    for (int i = 0; i < TAM; i++) tabla[i] = nullptr;
+    for (int i = 0; i < TAM; i++)
+        tabla[i] = nullptr;
 }
 
 HashMapProcesos::~HashMapProcesos() {
@@ -13,10 +15,6 @@ HashMapProcesos::~HashMapProcesos() {
             delete temp;
         }
     }
-}
-
-int HashMapProcesos::funcionHash(int clave) const {
-    return clave % TAM;
 }
 
 void HashMapProcesos::insertar(int clave, const Proceso& proceso) {
@@ -41,7 +39,7 @@ Proceso HashMapProcesos::obtener(int clave) const {
         if (actual->clave == clave) return actual->proceso;
         actual = actual->siguiente;
     }
-    throw std::runtime_error("Proceso no encontrado");
+    throw runtime_error("Proceso no encontrado");
 }
 
 void HashMapProcesos::actualizar(int clave, const Proceso& proceso) {
@@ -59,15 +57,15 @@ void HashMapProcesos::actualizar(int clave, const Proceso& proceso) {
 void HashMapProcesos::eliminar(int clave) {
     int idx = funcionHash(clave);
     Nodo* actual = tabla[idx];
-    Nodo* anterior = nullptr;
+    Nodo* prev = nullptr;
     while (actual) {
         if (actual->clave == clave) {
-            if (!anterior) tabla[idx] = actual->siguiente;
-            else anterior->siguiente = actual->siguiente;
+            if (prev) prev->siguiente = actual->siguiente;
+            else tabla[idx] = actual->siguiente;
             delete actual;
             return;
         }
-        anterior = actual;
+        prev = actual;
         actual = actual->siguiente;
     }
 }

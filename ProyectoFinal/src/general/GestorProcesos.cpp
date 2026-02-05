@@ -50,13 +50,13 @@ void GestorProcesos::eliminarProceso(int id) {
 
     listaProcesos.actualizar(proceso);
     mapaProcesos.eliminar(id);
-    colaPendientes.eliminarPorId(id); // sincroniza cola
     pilaDeshacer.apilar(proceso);
 
     persistencia.actualizarProceso(proceso);
 
     cout << "Proceso eliminado correctamente.\n";
 }
+
 
 void GestorProcesos::mostrarProcesosPendientes() const {
     colaPendientes.mostrar();

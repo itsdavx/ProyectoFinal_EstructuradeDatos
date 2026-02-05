@@ -22,17 +22,14 @@ private:
     EstadoProceso estado;
 
 public:
-    // Constructor
     Proceso(int id, const string& nombre, const string& descripcion, int prioridad);
 
-    // Getters
     int getId() const;
     string getNombre() const;
     string getDescripcion() const;
     int getPrioridad() const;
     EstadoProceso getEstado() const;
 
-    // Setters
     void setEstado(EstadoProceso nuevoEstado);
 };
 

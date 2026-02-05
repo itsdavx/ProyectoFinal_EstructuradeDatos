@@ -1,9 +1,9 @@
 #ifndef HASHMAP_PROCESOS_H
 #define HASHMAP_PROCESOS_H
 
-#include "../include/general/Proceso.h"
+#include "../general/Proceso.h"
 #include <iostream>
-#include <stdexcept>
+using namespace std;
 
 class HashMapProcesos {
 private:
@@ -11,18 +11,16 @@ private:
         int clave;
         Proceso proceso;
         Nodo* siguiente;
-        Nodo(int c, const Proceso& p, Nodo* s = nullptr) : clave(c), proceso(p), siguiente(s) {}
+        Nodo(int c, const Proceso& p, Nodo* sig) : clave(c), proceso(p), siguiente(sig) {}
     };
-
     static const int TAM = 100;
     Nodo* tabla[TAM];
 
-    int funcionHash(int clave) const;
+    int funcionHash(int clave) const { return clave % TAM; }
 
 public:
     HashMapProcesos();
     ~HashMapProcesos();
-
     void insertar(int clave, const Proceso& proceso);
     bool existe(int clave) const;
     Proceso obtener(int clave) const;

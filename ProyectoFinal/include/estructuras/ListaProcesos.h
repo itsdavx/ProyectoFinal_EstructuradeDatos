@@ -1,8 +1,9 @@
 #ifndef LISTA_PROCESOS_H
 #define LISTA_PROCESOS_H
 
-#include "../include/general/Proceso.h"
+#include "../general/Proceso.h"
 #include <iostream>
+using namespace std;
 
 class ListaProcesos {
 private:
@@ -11,7 +12,6 @@ private:
         Nodo* siguiente;
         Nodo(const Proceso& p) : proceso(p), siguiente(nullptr) {}
     };
-
     Nodo* cabeza;
 
 public:

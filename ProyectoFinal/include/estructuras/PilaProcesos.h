@@ -1,8 +1,9 @@
 #ifndef PILA_PROCESOS_H
 #define PILA_PROCESOS_H
 
-#include "../include/general/Proceso.h"
+#include "../general/Proceso.h"
 #include <iostream>
+using namespace std;
 
 class PilaProcesos {
 private:

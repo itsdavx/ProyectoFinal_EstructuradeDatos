@@ -1,9 +1,9 @@
 #ifndef COLA_PROCESOS_H
 #define COLA_PROCESOS_H
 
-#include "../include/general/Proceso.h"
+#include "../general/Proceso.h"
 #include <iostream>
-#include <limits>
+using namespace std;
 
 class ColaProcesos {
 private:
@@ -24,7 +24,6 @@ public:
     void encolar(const Proceso& proceso);
     Proceso desencolar();
     void mostrar() const;
-    bool eliminarPorId(int id);
 };
 
 #endif

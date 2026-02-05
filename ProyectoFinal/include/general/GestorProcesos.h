@@ -25,17 +25,14 @@ private:
 public:
     GestorProcesos();
 
-    // Operaciones principales
     void registrarProceso(const string& nombre, const string& descripcion, int prioridad);
     void ejecutarProceso();
     void eliminarProceso(int id);
 
-    // Consultas
     void mostrarProcesosPendientes() const;
     void mostrarHistorial() const;
     void buscarProcesoPorId(int id) const;
 
-    // Deshacer
     void deshacerUltimaAccion();
 };
 
