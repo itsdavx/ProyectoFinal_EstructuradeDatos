@@ -19,6 +19,9 @@ private:
     void mostrarFlujo();
     void deshacerAccion();
 
+    //Metodo auxiliar
+    void linea() const;
+
 public:
 
     // Constructor

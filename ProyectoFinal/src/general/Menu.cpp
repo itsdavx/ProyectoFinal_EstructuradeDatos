@@ -126,6 +126,6 @@ void Menu::deshacerAccion() {
 }
 
 // Metodo Auxiliar para aspecto visual
-void linea() {
+void Menu::linea() const {
     cout << "-----------------------------------------------------------------" << endl;
 }
