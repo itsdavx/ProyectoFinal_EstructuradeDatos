@@ -14,6 +14,7 @@ private:
     void buscarProceso();
     void eliminarProceso();
     void mostrarHistorial();
+    void mostrarFlujo();
     void deshacerAccion();
 
 public:

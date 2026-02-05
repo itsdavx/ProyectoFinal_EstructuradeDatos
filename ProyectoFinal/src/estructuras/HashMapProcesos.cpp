@@ -2,10 +2,8 @@
 #include <stdexcept>
 
 HashMapProcesos::HashMapProcesos() {
-    for (int i = 0; i < TAM; i++)
-        tabla[i] = nullptr;
+    for (int i = 0; i < TAM; i++) tabla[i] = nullptr;
 }
-
 HashMapProcesos::~HashMapProcesos() {
     for (int i = 0; i < TAM; i++) {
         Nodo* actual = tabla[i];
@@ -17,9 +15,12 @@ HashMapProcesos::~HashMapProcesos() {
     }
 }
 
+int HashMapProcesos::funcionHash(int clave) const { return clave % TAM; }
+
 void HashMapProcesos::insertar(int clave, const Proceso& proceso) {
     int idx = funcionHash(clave);
-    tabla[idx] = new Nodo(clave, proceso, tabla[idx]);
+    Nodo* nuevo = new Nodo(clave, proceso, tabla[idx]);
+    tabla[idx] = nuevo;
 }
 
 bool HashMapProcesos::existe(int clave) const {
@@ -57,15 +58,15 @@ void HashMapProcesos::actualizar(int clave, const Proceso& proceso) {
 void HashMapProcesos::eliminar(int clave) {
     int idx = funcionHash(clave);
     Nodo* actual = tabla[idx];
-    Nodo* prev = nullptr;
+    Nodo* anterior = nullptr;
     while (actual) {
         if (actual->clave == clave) {
-            if (prev) prev->siguiente = actual->siguiente;
+            if (anterior) anterior->siguiente = actual->siguiente;
             else tabla[idx] = actual->siguiente;
             delete actual;
             return;
         }
-        prev = actual;
+        anterior = actual;
         actual = actual->siguiente;
     }
 }

@@ -3,6 +3,7 @@
 
 #include "../general/Proceso.h"
 #include <iostream>
+
 using namespace std;
 
 class PilaProcesos {
@@ -12,7 +13,6 @@ private:
         Nodo* siguiente;
         Nodo(const Proceso& p) : proceso(p), siguiente(nullptr) {}
     };
-
     Nodo* cima;
 
 public:

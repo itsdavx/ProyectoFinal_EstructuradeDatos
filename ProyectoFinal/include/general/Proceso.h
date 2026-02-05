@@ -5,7 +5,6 @@
 
 using namespace std;
 
-// Estados posibles de un proceso
 enum class EstadoProceso {
     PENDIENTE,
     EN_EJECUCION,
@@ -18,16 +17,14 @@ private:
     int id;
     string nombre;
     string descripcion;
-    int prioridad;
     EstadoProceso estado;
 
 public:
-    Proceso(int id, const string& nombre, const string& descripcion, int prioridad);
+    Proceso(int id, const string& nombre, const string& descripcion);
 
     int getId() const;
     string getNombre() const;
     string getDescripcion() const;
-    int getPrioridad() const;
     EstadoProceso getEstado() const;
 
     void setEstado(EstadoProceso nuevoEstado);

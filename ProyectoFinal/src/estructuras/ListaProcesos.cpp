@@ -2,7 +2,7 @@
 
 ListaProcesos::ListaProcesos() : cabeza(nullptr) {}
 ListaProcesos::~ListaProcesos() {
-    while (cabeza) {
+    while (cabeza != nullptr) {
         Nodo* temp = cabeza;
         cabeza = cabeza->siguiente;
         delete temp;
@@ -16,8 +16,7 @@ void ListaProcesos::agregar(const Proceso& proceso) {
         return;
     }
     Nodo* actual = cabeza;
-    while (actual->siguiente)
-        actual = actual->siguiente;
+    while (actual->siguiente != nullptr) actual = actual->siguiente;
     actual->siguiente = nuevo;
 }
 
@@ -41,7 +40,9 @@ void ListaProcesos::mostrar() const {
     while (actual) {
         cout << "ID: " << actual->proceso.getId()
              << " | Nombre: " << actual->proceso.getNombre()
-             << " | Estado: " << static_cast<int>(actual->proceso.getEstado()) << "\n";
+             << " | Descripcion: " << actual->proceso.getDescripcion()
+             << " | Estado: " << static_cast<int>(actual->proceso.getEstado())
+             << endl;
         actual = actual->siguiente;
     }
 }
@@ -52,7 +53,9 @@ void ListaProcesos::mostrarPorEstado(EstadoProceso estado) const {
     while (actual) {
         if (actual->proceso.getEstado() == estado) {
             cout << "ID: " << actual->proceso.getId()
-                 << " | Nombre: " << actual->proceso.getNombre() << "\n";
+                 << " | Nombre: " << actual->proceso.getNombre()
+                 << " | Descripcion: " << actual->proceso.getDescripcion()
+                 << endl;
             encontrado = true;
         }
         actual = actual->siguiente;

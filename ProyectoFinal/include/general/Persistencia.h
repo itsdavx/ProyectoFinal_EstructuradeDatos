@@ -5,24 +5,29 @@
 #include "../estructuras/PilaProcesos.h"
 #include "../estructuras/ListaProcesos.h"
 #include "../estructuras/HashMapProcesos.h"
-#include <fstream>
-#include <sstream>
+#include "Proceso.h"
 #include <string>
-
-using namespace std;
 
 class Persistencia {
 private:
-    const string rutaProcesos = "data/procesos.csv";
-    const string rutaHistorial = "data/historial.csv";
+    const std::string rutaProcesos = "data/procesos.csv";
+    const std::string rutaHistorial = "data/historial.csv";
+
+    std::string estadoToString(EstadoProceso estado) const;
 
 public:
-    void guardarProceso(const Proceso& p);
-    void actualizarProceso(const Proceso& p);
+    Persistencia() = default;
+
     void cargarProcesos(ListaProcesos& lista,
                         ColaProcesos& cola,
                         HashMapProcesos& mapa,
                         int& siguienteId);
+
+    void guardarProceso(const Proceso& p);
+    void actualizarProceso(const Proceso& p);
+
+    void registrarEnHistorial(const std::string& accion, const Proceso& p);
+    void mostrarHistorial() const;
 };
 
 #endif

@@ -2,15 +2,11 @@
 #include <stdexcept>
 
 PilaProcesos::PilaProcesos() : cima(nullptr) {}
-
 PilaProcesos::~PilaProcesos() {
-    while (!estaVacia())
-        desapilar();
+    while (!estaVacia()) desapilar();
 }
 
-bool PilaProcesos::estaVacia() const {
-    return cima == nullptr;
-}
+bool PilaProcesos::estaVacia() const { return cima == nullptr; }
 
 void PilaProcesos::apilar(const Proceso& proceso) {
     Nodo* nuevo = new Nodo(proceso);
@@ -19,8 +15,7 @@ void PilaProcesos::apilar(const Proceso& proceso) {
 }
 
 Proceso PilaProcesos::desapilar() {
-    if (estaVacia())
-        throw runtime_error("La pila está vacía");
+    if (estaVacia()) throw runtime_error("La pila esta vacia");
     Nodo* temp = cima;
     Proceso p = temp->proceso;
     cima = cima->siguiente;
@@ -30,13 +25,16 @@ Proceso PilaProcesos::desapilar() {
 
 void PilaProcesos::mostrar() const {
     if (estaVacia()) {
-        cout << "No hay acciones en la pila.\n";
+        cout << "No hay acciones registradas.\n";
         return;
     }
     Nodo* actual = cima;
     while (actual) {
         cout << "ID: " << actual->proceso.getId()
-             << " | Nombre: " << actual->proceso.getNombre() << "\n";
+             << " | Nombre: " << actual->proceso.getNombre()
+             << " | Descripcion: " << actual->proceso.getDescripcion()
+             << " | Estado: " << static_cast<int>(actual->proceso.getEstado())
+             << endl;
         actual = actual->siguiente;
     }
 }
