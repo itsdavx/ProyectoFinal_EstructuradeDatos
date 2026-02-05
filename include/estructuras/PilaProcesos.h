@@ -1,0 +1,27 @@
+#ifndef PILA_PROCESOS_H
+#define PILA_PROCESOS_H
+
+#include "../include/general/Proceso.h"
+#include <iostream>
+
+class PilaProcesos {
+private:
+    struct Nodo {
+        Proceso proceso;
+        Nodo* siguiente;
+        Nodo(const Proceso& p) : proceso(p), siguiente(nullptr) {}
+    };
+
+    Nodo* cima;
+
+public:
+    PilaProcesos();
+    ~PilaProcesos();
+
+    bool estaVacia() const;
+    void apilar(const Proceso& proceso);
+    Proceso desapilar();
+    void mostrar() const;
+};
+
+#endif
